@@ -21,6 +21,7 @@ end
 
 scenario 'user inputs valid information and records a building' do
 
+  count = Building.count
   fill_in 'Street address', with: '101 launch st'
   fill_in 'City', with: 'Beantown'
   fill_in 'State', with: 'Massachusetts'
@@ -30,6 +31,7 @@ scenario 'user inputs valid information and records a building' do
 
   expect(page).to have_content("New Building Successfully Created!")
   expect(current_path).to eql(root_path)
+  expect(Building.count).to eql(count + 1)
 
 end
 
